@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise TodoApp Dashboard</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <h1>Enterprise TodoApp</h1>
+          <p class="subtitle">Node.js + Express + TypeScript Modular Architecture</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <!-- Live Health Badge -->
+        <div class="health-badge" id="healthBadge">
+          <span class="pulse-dot"></span>
+          <span id="healthStatusText">جاري الفحص...</span>
+        </div>
+        
+        <a href="/docs" target="_blank" class="btn btn-secondary">
+          <span>📚 Swagger Docs</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon icon-total">📋</div>
+        <div class="stat-info">
+          <span class="stat-label">إجمالي المهام</span>
+          <h3 class="stat-value" id="statTotal">0</h3>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon icon-pending">⏳</div>
+        <div class="stat-info">
+          <span class="stat-label">قيد الانتظار</span>
+          <h3 class="stat-value" id="statPending">0</h3>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-completed">✅</div>
+        <div class="stat-info">
+          <span class="stat-label">المكتملة</span>
+          <h3 class="stat-value" id="statCompleted">0</h3>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-progress">📊</div>
+        <div class="stat-info">
+          <span class="stat-label">نسبة الإنجاز</span>
+          <h3 class="stat-value" id="statProgress">0%</h3>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <main class="dashboard-main">
+      <!-- Add Todo Form Card -->
+      <section class="card form-card">
+        <div class="card-header">
+          <h2>➕ إضافة مهمة جديدة</h2>
+        </div>
+        <form id="addTodoForm" class="todo-form">
+          <div class="form-group">
+            <label for="todoTitle">عنوان المهمة <span class="required">*</span></label>
+            <input type="text" id="todoTitle" placeholder="مثال: مراجعة كود الموديول..." required autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="todoDescription">الوصف التفصيلي (اختياري)</label>
+            <textarea id="todoDescription" rows="3" placeholder="أضف أي تفاصيل أو ملاحظات أخرى..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <span>حفظ المهمة</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Todos Section & Toolbar -->
+      <section class="todos-section">
+        <div class="toolbar card">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="بحث في المهام...">
+          </div>
+
+          <div class="filter-tabs">
+            <button class="tab-btn active" data-filter="all">الكل</button>
+            <button class="tab-btn" data-filter="pending">قيد الانتظار</button>
+            <button class="tab-btn" data-filter="completed">المكتملة</button>
+          </div>
+        </div>
+
+        <!-- Todos List Grid -->
+        <div id="todosGrid" class="todos-grid">
+          <div class="loading-spinner">جاري تحميل المهام...</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Trace ID Footer Info -->
+    <footer class="app-footer">
+      <div>
+        <span>Trace Correlation ID: </span>
+        <code id="currentTraceId">N/A</code>
+      </div>
+      <div>Enterprise Boilerplate Architecture &copy; 2026</div>
+    </footer>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
